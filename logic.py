@@ -4,7 +4,7 @@ import random
 # =========================
 # MODO TEST
 # =========================
-TEST_MODE = True            # Cambia a False en producción
+TEST_MODE = False            # Cambia a False en producción        True
 FAKE_TODAY = datetime.date(2025, 12, 17)
 
 def _today():
