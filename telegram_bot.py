@@ -14,13 +14,18 @@ from telegram.ext import (
 from datetime import time
 import pytz
 
-from config import BOT_TOKEN, ADMIN_TELEGRAM_ID, STUDENT_TELEGRAM_ID
-
 from assistant_core import run_daily_flow
 from storage import load_progress
 
 from assistant_core import run_daily_flow, generate_admin_report, exam_completed_today
 from logic import today_str
+
+import os
+
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+ADMIN_TELEGRAM_ID = int(os.environ.get("ADMIN_TELEGRAM_ID"))
+STUDENT_TELEGRAM_ID = int(os.environ.get("STUDENT_TELEGRAM_ID"))
+
 
 # =========================
 # ZONA HORARIA
