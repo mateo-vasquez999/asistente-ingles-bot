@@ -1,0 +1,13 @@
+pasos:
+
+
+python whatsapp_bot.py
+
+ngrok http 5000
+
+
+
+
+
+
+python telegram_bot.py
