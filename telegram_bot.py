@@ -240,21 +240,21 @@ def main():
     # 📚 Examen inicial — 1:00 PM
     app.job_queue.run_daily(
         daily_job,
-        time=time(hour=20, minute=18, tzinfo=LOCAL_TZ),
+        time=time(hour=23, minute=12, tzinfo=LOCAL_TZ),
         days=(0, 1, 2, 3, 4, 5, 6)
     )
 
     # ⏰ Recordatorio 1 — 4:00 PM
     app.job_queue.run_daily(
         remind_exam,
-        time=time(hour=20, minute=19, tzinfo=LOCAL_TZ),
+        time=time(hour=16, minute=19, tzinfo=LOCAL_TZ),
         days=(0, 1, 2, 3, 4, 5, 6)
     )
 
     # ⏰ Recordatorio 2 — 7:00 PM
     app.job_queue.run_daily(
         remind_exam,
-        time=time(hour=20, minute=20, tzinfo=LOCAL_TZ),
+        time=time(hour=19, minute=20, tzinfo=LOCAL_TZ),
         days=(0, 1, 2, 3, 4, 5, 6)
     )
 
@@ -268,7 +268,7 @@ def main():
     # 📊 REPORTE DIARIO — 10:10 PM
     app.job_queue.run_daily(
         admin_daily_report,
-        time=time(hour=20, minute=22, tzinfo=LOCAL_TZ),
+        time=time(hour=20, minute=42, tzinfo=LOCAL_TZ),
         days=(0, 1, 2, 3, 4, 5, 6)
     )
 
