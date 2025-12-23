@@ -1,14 +1,28 @@
 import datetime
 import random
+import pytz
+
+# =========================
+# ZONA HORARIA
+# =========================
+LOCAL_TZ = pytz.timezone("America/Bogota")
 
 # =========================
 # MODO TEST
 # =========================
-TEST_MODE = False            # Cambia a False en producción        True
-FAKE_TODAY = datetime.date(2025, 12, 17)
+TEST_MODE = False  # True solo para pruebas locales
+FAKE_TODAY = datetime.date(2025, 12, 18)
+
+# =========================
+# FECHA CENTRALIZADA
+# =========================
+def now_local():
+    return datetime.datetime.now(LOCAL_TZ)
 
 def _today():
-    return FAKE_TODAY if TEST_MODE else datetime.date.today()
+    if TEST_MODE:
+        return FAKE_TODAY
+    return now_local().date()
 
 def today():
     return _today()
@@ -28,15 +42,14 @@ def week_id():
 
 def weekday_name(date_str=None):
     """
-    Si no se pasa fecha, usa hoy.
+    Si no se pasa fecha, usa hoy (zona horaria local).
     date_str: 'YYYY-MM-DD'
     """
     if date_str is None:
         d = _today()
     else:
-        d = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+        d = datetime.datetime.strptime(date_str, "%Y-%m-%d").date()
     return d.strftime("%A")
-
 
 def is_saturday():
     return _today().weekday() == 5
@@ -44,6 +57,9 @@ def is_saturday():
 def is_sunday():
     return _today().weekday() == 6
 
+# =========================
+# LÓGICA DE PALABRAS
+# =========================
 def get_new_words(words, used, n=3):
     available = [i for i in range(len(words)) if i not in used]
     return random.sample(available, min(n, len(available)))
