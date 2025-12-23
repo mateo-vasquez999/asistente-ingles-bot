@@ -240,7 +240,7 @@ def main():
     # 📚 Examen inicial — 1:00 PM
     app.job_queue.run_daily(
         daily_job,
-        time=time(hour=15, minute=50, tzinfo=LOCAL_TZ),
+        time=time(hour=13, minute=50, tzinfo=LOCAL_TZ),
         days=(0, 1, 2, 3, 4, 5, 6)
     )
 
