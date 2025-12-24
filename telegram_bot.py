@@ -22,6 +22,10 @@ from logic import today_str
 
 import os
 
+import threading
+from keep_alive import start_server
+
+
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 ADMIN_TELEGRAM_ID = int(os.environ.get("ADMIN_TELEGRAM_ID"))
 STUDENT_TELEGRAM_ID = int(os.environ.get("STUDENT_TELEGRAM_ID"))
@@ -271,6 +275,8 @@ def main():
         time=time(hour=20, minute=42, tzinfo=LOCAL_TZ),
         days=(0, 1, 2, 3, 4, 5, 6)
     )
+
+    threading.Thread(target=start_server, daemon=True).start()
 
     print("🤖 Bot de Telegram corriendo...")
     app.run_polling()
